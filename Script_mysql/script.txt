@@ -1,0 +1,35 @@
+#Creando base de datos
+CREATE DATABASE Registro;
+
+#Seleccionando la base de datos
+USE Registro;
+
+#Creando tablas
+CREATE TABLE mat_materia(
+    mat_id int AUTO_INCREMENT PRIMARY KEY,
+	mat_nombre varchar(100)
+);
+
+CREATE TABLE grd_grado(
+    grd_id int AUTO_INCREMENT PRIMARY KEY,
+	grd_nombre varchar(100)
+);
+
+CREATE TABLE alm_alumno(
+    alm_id int AUTO_INCREMENT PRIMARY KEY,
+    alm_codigo varchar(100),
+	alm_nombre varchar(300),
+	alm_edad int,
+	alm_sexo varchar(100),
+	alm_id_grd int,
+	alm_observacion varchar(300),
+    FOREIGN KEY (alm_id_grd) REFERENCES grd_grado (grd_id)
+);
+
+CREATE TABLE mxg_materiasxgrado(
+    mxg_id int AUTO_INCREMENT PRIMARY KEY,
+	mxg_id_grd int,
+	mxg_id_mat int,
+    FOREIGN KEY (mxg_id_grd) REFERENCES grd_grado (grd_id),
+    FOREIGN KEY (mxg_id_mat) REFERENCES mat_materia (mat_id)
+);
